@@ -1,2 +1,2 @@
-# Python_Algorithm
-solve algorithm problems with python
+# Algorithm
+solve algorithm problems
