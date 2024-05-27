@@ -218,46 +218,42 @@ def bfs(b: Board) -> int:
             break
         
         if (nb[2] != 1 and nb[2] != 2):
-            result = nb[0].right()
+            new_r = copy.deepcopy(nb[0])
+            result = new_r.right()
             if result== 0:
                 return nb[1]
             elif result == 1:
-                queue.append([copy.deepcopy(nb[0]),nb[1]+1, 1])
-                nb[0].recent()
-            result = nb[0].left()
+                queue.append([new_r,nb[1]+1, 1])
+            new_l = copy.deepcopy(nb[0])
+            result = new_l.left()
             if result == 0:
                 return nb[1]
             elif result == 1:
-                queue.append([copy.deepcopy(nb[0]),nb[1]+1, 2])
-                nb[0].recent()
+                queue.append([new_l,nb[1]+1, 2])
 
         if (nb[2] != 3 and nb[2] != 4):
-            result = nb[0].upward()
+            new_u = copy.deepcopy(nb[0])
+            result = new_u.upward()
             if result == 0:
                 return nb[1]
             elif result == 1:
-                queue.append([copy.deepcopy(nb[0]),nb[1]+1, 3])
-                nb[0].recent()
-            result = nb[0].downward()
+                queue.append([new_u,nb[1]+1, 3])
+
+            new_d = copy.deepcopy(nb[0])
+            result = new_d.downward()
             if result == 0:
                 return nb[1]
             elif result == 1:
-                queue.append([copy.deepcopy(nb[0]),nb[1]+1, 4])
-                nb[0].recent()
+                queue.append([new_d,nb[1]+1, 4])
         
     
     return -1
-
-
-
 
         
  
 N, M = map(int, input().split())
 b: Board = Board(N, M)
-b.right()
-b.printBoard()
 
-# ans = bfs(b)
-# print(ans)
+ans = bfs(b)
+print(ans)
 
